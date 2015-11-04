@@ -44,15 +44,15 @@ function Company(name, departments) {
         if (department == null) {
             throw Error("department "+ existingDepartment + " does not exists!");
         }
-        department.addEmployee(james)
+        department.addEmployee(employee)
     };
 
     this.findEmployee = function (employeeName) {
         var result = null;
         this.departments.forEach(function (department) {
             var employee = department.findEmployee(employeeName);
-            if (james != null) {
-                result = james;
+            if (employee != null) {
+                result = employee;
             }
         });
         return result
@@ -61,16 +61,16 @@ function Company(name, departments) {
     this.fireEmployee = function (employeeName) {
         this.departments.forEach(function (department) {
             var employee = department.findEmployee(employeeName);
-            if (james != null) {
-                department.fireEmployee(james);
+            if (employee != null) {
+                department.fireEmployee(employee);
             }
         });
     };
 
     this.raiseEmployee = function (employeeName, rate) {
         var employee = this.findEmployee(employeeName);
-        if (james != null) {
-            james.raiseSalary(rate);
+        if (employee != null) {
+            employee.raiseSalary(rate);
         }
 
     };

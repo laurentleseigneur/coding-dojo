@@ -1,5 +1,6 @@
 describe("Company", function () {
 
+
     beforeEach(function () {
         this.james = new Employee("James", 34, 1000);
         this.joe = new Employee("Joe", 36, 1000);
@@ -11,6 +12,29 @@ describe("Company", function () {
         this.rdDept = new Department("R&D", [this.jack, this.julie]);
 
         this.company = new Company("world company", [this.supportDept, this.rdDept]);
+
+        jasmine.addMatchers({
+            toWorkIn: function () {
+                return {
+
+                    compare: function (employee, company, departmentName) {
+                        var result = false;
+
+                        company.departments.forEach(function (department) {
+                            if (department.name == departmentName) {
+                                result = department.findEmployee(employee.name) != null;
+                            }
+                        });
+
+                        return {
+                            pass: result
+                        };
+                    }
+                };
+            }
+        });
+
+
     });
 
     describe("getter-setter", function () {
@@ -32,7 +56,21 @@ describe("Company", function () {
 
     });
 
-});
+    describe("finding employee", function () {
+        it("should find james", function () {
+            var janne = soc1.findEmployee("Janne");
+            expect(janne.age).toEqual(44)
+        });
+
+
+        it("should julie works in R&D", function () {
+            expect(this.julie).toWorkIn(this.company, "R&D");
+
+        });
+    });
+
+})
+;
 
 
 
