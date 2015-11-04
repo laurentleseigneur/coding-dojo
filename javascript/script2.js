@@ -102,11 +102,8 @@ function Company(name, departments) {
     var dep12 = new Department("Support", [e1, e2, e4]);
     var dep13 = new Department("R&D", [e3, e5]);
 
-    var soc1 = new Company("world company", [dep12, dep13]);
+    window.soc1 = new Company("world company", [dep12, dep13]);
 
     console.log(soc1.toString());
-
-var expected=644;
-display (soc1.averageSalaries()== expected,"average salaries should be "+expected);
 
 })();
