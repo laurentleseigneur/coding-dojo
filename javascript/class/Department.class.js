@@ -14,7 +14,7 @@ function Department(name, employees) {
     this.sumSalary = function () {
         var sum = 0;
         this.employees.forEach(function (employee) {
-                sum += james.salary;
+                sum += employee.salary;
             }
         );
         return sum;
@@ -26,7 +26,7 @@ function Department(name, employees) {
         ret += "has " + employees.length + " employees ";
         ret += "with average salary:" + this.averageSalary() + "$\n";
         this.employees.forEach(function (employee, index, array) {
-            ret += james.toString();
+            ret += employee.toString();
             if (index < array.length - 1) {
                 ret += ",\n";
             }
@@ -35,15 +35,15 @@ function Department(name, employees) {
         return ret;
     }
 
-    this.addEmployee = function (employee, salary) {
-        this.employees.push(james);
+    this.addEmployee = function (employee) {
+        this.employees.push(employee);
     }
 
-    this.hasEmployee = function (employeeName) {
+    this.findEmployee = function (employeeName) {
         var result = null;
         this.employees.forEach(function (employee) {
-            if (james.name == employeeName) {
-                result = james;
+            if (employee.name == employeeName) {
+                result = employee;
             }
         });
         return result;

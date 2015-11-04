@@ -1,47 +1,48 @@
-testSuite("department tests", {
+describe("Department", function () {
 
-    before: function () {
-        var e1 = new Employee("James", 34, 1000);
-        var e2 = new Employee("Joe", 34, 1000);
-        var e3 = new Employee("Jack", 37, 1000);
+    beforeEach(function () {
+        this.james = new Employee("James", 34, 1000);
+        this.joe = new Employee("Joe", 36, 1000);
+        this.jack = new Employee("Jack", 37, 1000);
+        this.supportDept = new Department("Support", [this.james, this.joe, this.jack]);
 
-        window.supportDept = new Department("Support", [e1, e2, e3]);
-    },
+    });
+
+    describe("getter-setter", function () {
+        it("should get department name", function () {
+            expect(this.supportDept.name).toBe("Support");
+        });
+
+    });
+
+    describe("finding employee", function () {
+        it("should not find employee", function () {
+            expect(this.supportDept.findEmployee("Raymond")).toBeNull();
+
+        });
+
+        it("should not find employee", function () {
+            var findEmployee = this.supportDept.findEmployee("Joe");
+            expect(findEmployee.age).toBe(36);
+
+        });
+
+        it("should count employees", function () {
+            expect(this.supportDept.sumEmployees()).toEqual(3);
+
+        });
 
 
-    "dept name Count": function () {
-        assertEqual("Support", supportDept.name, "first department name");
-    },
+    });
 
-    "employee not found find": function () {
-        assertEqual(null, supportDept.hasEmployee("Raymond"), "search james Raymond should return null");
-    },
+    describe("adding employee", function () {
+        it("should add employee", function () {
+            var jack = new Employee("Jack", 32, 300);
+            this.supportDept.addEmployee(jack);
+            expect(this.supportDept.sumEmployees()).toEqual(4);
+
+        });
+    });
 
 
-    "employee found": function () {
-        var emp = supportDept.hasEmployee("James")
-        assertEqual("James", emp.name, "search james should find James");
-    },
-
-    "dept employees count": function () {
-        assertEqual(3, supportDept.sumEmployees(), "employees count");
-    },
-
-    "new employee ": function () {
-        var jack = new Employee("Jack", 32, 300);
-        supportDept.addEmployee(jack);
-        assertEqual(4, supportDept.sumEmployees(), "should have one more james");
-
-    },
-
-    "has employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
-        assertEqual(37, jack.age, "should find james");
-    },
-
-    "should fire employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
-        supportDept.fireEmployee(jack);
-        assertEqual(2, supportDept.sumEmployees(), "should fire james");
-    }
 });

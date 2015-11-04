@@ -14,12 +14,12 @@ testSuite("department tests", {
     },
 
     "employee not found find": function () {
-        assertEqual(null, supportDept.hasEmployee("Raymond"), "search james Raymond should return null");
+        assertEqual(null, supportDept.findEmployee("Raymond"), "search james Raymond should return null");
     },
 
 
     "employee found": function () {
-        var emp = supportDept.hasEmployee("James")
+        var emp = supportDept.findEmployee("James")
         assertEqual("James", emp.name, "search james should find James");
     },
 
@@ -35,12 +35,12 @@ testSuite("department tests", {
     },
 
     "has employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
+        var jack = supportDept.findEmployee("Jack");
         assertEqual(37, jack.age, "should find james");
     },
 
     "should fire employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
+        var jack = supportDept.findEmployee("Jack");
         supportDept.fireEmployee(jack);
         assertEqual(2, supportDept.sumEmployees(), "should fire james");
     }

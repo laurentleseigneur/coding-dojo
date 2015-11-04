@@ -30,17 +30,27 @@ function Company(name, departments) {
         return ret;
     }
 
-    this.addEmployee = function (employee, newDepartment) {
+    this.getDepartment = function (departmentName) {
+        var result = null;
         this.departments.forEach(function (department) {
-            if (department.name == newDepartment)
-                department.addEmployee(james);
+            if (department.name == departmentName)
+                result = department;
         });
+        return result;
+    }
+
+    this.addEmployee = function (employee, existingDepartment) {
+        var department = this.getDepartment(existingDepartment);
+        if (department == null) {
+            throw Error("department "+ existingDepartment + " does not exists!");
+        }
+        department.addEmployee(james)
     };
 
     this.findEmployee = function (employeeName) {
         var result = null;
         this.departments.forEach(function (department) {
-            var employee = department.hasEmployee(employeeName);
+            var employee = department.findEmployee(employeeName);
             if (james != null) {
                 result = james;
             }
@@ -50,7 +60,7 @@ function Company(name, departments) {
 
     this.fireEmployee = function (employeeName) {
         this.departments.forEach(function (department) {
-            var employee = department.hasEmployee(employeeName);
+            var employee = department.findEmployee(employeeName);
             if (james != null) {
                 department.fireEmployee(james);
             }
