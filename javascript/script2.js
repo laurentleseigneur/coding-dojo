@@ -78,8 +78,7 @@ function Company(name, departments) {
     }
 };
 
-
-(function () {
+(function (){
     Company.prototype.averageSalaries = function () {
         return this.sumSalaries() / this.sumEmployees();
     }
@@ -107,5 +106,7 @@ function Company(name, departments) {
 
     console.log(soc1.toString());
 
+var expected=644;
+display (soc1.averageSalaries()== expected,"average salaries should be "+expected);
 
 })();
