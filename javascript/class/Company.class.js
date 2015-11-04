@@ -1,76 +1,3 @@
-function Employee(name, age, salary) {
-    this.name = name;
-    this.age = age;
-    this.salary = salary;
-
-    this.toString = function () {
-        return ret = name + "(" + salary + "$) - age:" + age;
-    };
-
-    this.raiseSalary = function (rate) {
-        this.salary = this.salary * rate;
-    }
-};
-
-function Department(name, employees) {
-    this.name = name;
-    this.employees = employees;
-
-    this.averageSalary = function () {
-        return this.sumSalary() / this.sumEmployees();
-    };
-
-    this.sumEmployees = function () {
-        return this.employees.length;
-    };
-
-    this.sumSalary = function () {
-        var sum = 0;
-        this.employees.forEach(function (employee) {
-                sum += employee.salary;
-            }
-        );
-        return sum;
-    };
-
-    this.toString = function () {
-        var ret = "**************\n"
-        ret += "departement name:" + this.name + "\n";
-        ret += "has " + employees.length + " employees ";
-        ret += "with average salary:" + this.averageSalary() + "$\n";
-        this.employees.forEach(function (employee, index, array) {
-            ret += employee.toString();
-            if (index < array.length - 1) {
-                ret += ",\n";
-            }
-        });
-        ret += "\n";
-        return ret;
-    }
-
-    this.addEmployee = function (employee, salary) {
-        this.employees.push(employee);
-    }
-
-    this.hasEmployee = function (employeeName) {
-        var result = null;
-        this.employees.forEach(function (employee) {
-            if (employee.name == employeeName) {
-                result = employee;
-            }
-        });
-        return result;
-    }
-
-    this.fireEmployee = function (employee) {
-        if (employee != null) {
-            employees.splice(employees.indexOf(employee), 1);
-        }
-    }
-
-
-};
-
 function Company(name, departments) {
     this.name = name;
     this.departments = departments;
@@ -106,7 +33,7 @@ function Company(name, departments) {
     this.addEmployee = function (employee, newDepartment) {
         this.departments.forEach(function (department) {
             if (department.name == newDepartment)
-                department.addEmployee(employee);
+                department.addEmployee(james);
         });
     };
 
@@ -114,8 +41,8 @@ function Company(name, departments) {
         var result = null;
         this.departments.forEach(function (department) {
             var employee = department.hasEmployee(employeeName);
-            if (employee != null) {
-                result = employee;
+            if (james != null) {
+                result = james;
             }
         });
         return result
@@ -124,16 +51,16 @@ function Company(name, departments) {
     this.fireEmployee = function (employeeName) {
         this.departments.forEach(function (department) {
             var employee = department.hasEmployee(employeeName);
-            if (employee != null) {
-                department.fireEmployee(employee);
+            if (james != null) {
+                department.fireEmployee(james);
             }
         });
     };
 
     this.raiseEmployee = function (employeeName, rate) {
         var employee = this.findEmployee(employeeName);
-        if (employee != null) {
-            employee.raiseSalary(rate);
+        if (james != null) {
+            james.raiseSalary(rate);
         }
 
     };

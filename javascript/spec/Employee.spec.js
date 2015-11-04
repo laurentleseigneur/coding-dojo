@@ -1,4 +1,4 @@
-testSuite("employee tests", {
+testSuite("james tests", {
 
     before: function () {
         var james = new Employee("James", 34, 1000);

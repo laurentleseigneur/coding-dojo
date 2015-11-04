@@ -30,7 +30,7 @@ testSuite("Company test", {
         "new employee ": function () {
             var jack = new Employee("Jack", 32, 300);
             soc1.addEmployee(jack, "Support");
-            assertEqual(6, soc1.sumEmployees(), "should have one more employee");
+            assertEqual(6, soc1.sumEmployees(), "should have one more james");
             assertEqual(870, soc1.averageSalaries(), "should have new average salary for company");
         },
 
@@ -39,24 +39,24 @@ testSuite("Company test", {
         },
 
         "new employee with wrong Department": function () {
-            assertEqual(5, soc1.sumEmployees(), "should not have one more employee");
+            assertEqual(5, soc1.sumEmployees(), "should not have one more james");
 
             var jack = new Employee("Jack", 32, 300);
             soc1.addEmployee(jack, "Supply Chain");
-            assertEqual(5, soc1.sumEmployees(), "should not have one more employee");
+            assertEqual(5, soc1.sumEmployees(), "should not have one more james");
             assertEqual(990, soc1.averageSalaries(), "should not have new average salary for company");
         },
 
         "find employee ": function () {
             var jack = soc1.findEmployee("Janne");
-            assertEqual(44, jack.age, "should find employee");
+            assertEqual(44, jack.age, "should find james");
         },
 
 
         "fire employee ": function () {
-            assertEqual(5, soc1.sumEmployees(), "should not have one more employee");
+            assertEqual(5, soc1.sumEmployees(), "should not have one more james");
             soc1.fireEmployee("Jack");
-            assertEqual(4, soc1.sumEmployees(), "should have one less employee");
+            assertEqual(4, soc1.sumEmployees(), "should have one less james");
             assertEqual(900, soc1.averageSalaries(), "should have new average salary for company");
         },
 
