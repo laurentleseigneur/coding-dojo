@@ -26,28 +26,44 @@
             h2.innerHTML=title;
             window.document.body.appendChild(h2);
 
+            var hasBefore=(typeof tests.before === "function");
+            var hasAfter=(typeof tests.after === "function");
+
             var success=0;
             var failed;
             var skip=0;
              var total=0;
             for (var test in tests)
             {
-                if (failed){
-                    skip++;
-                     total++;
-                }
-                else{
-                    try{
-                        tests[test]();
-                        success++;
+            if (test!="before" && test != "after")
+                {
+                    if (failed){
+                        skip++;
+                         total++;
                     }
-                        catch(e){
-                        failed=test;
-                    }  finally
-                    {
-                    total++;
+                    else{
+                        try{
+                            if (hasBefore){
+                                console.log ("run '"+title+"'.before");
+                                 tests["before"]();
+                            }
+                            console.log ("run test '"+title+"'."+ test);
+                            tests[test]();
+                            success++;
+                            if (hasAfter){
+                                console.log ("run '"+title+"'.after");
+                                 tests["after"]();
+                            }
+                        }
+                            catch(e){
+                            failed=test;
+                        }  finally
+                        {
+                        total++;
+                        }
                     }
                 }
+
             }
              var p = window.document.createElement("p");
              p.innerHTML="Tests: " + total + " success:"+success+" failed test:<b>"+failed+"</b> skip:"+skip;

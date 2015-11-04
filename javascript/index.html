@@ -2,7 +2,7 @@
 <head><title>test</title></head>
 <body>
 <script src="test.js"></script>
-<script src="script2.js"></script>
+<script src="script.js"></script>
 <h1>Tests</h1>
 <script>
     testSuite("department tests",{
@@ -11,6 +11,20 @@
         }
     });
     testSuite("company tests",{
+        before:function(){
+            soc1.name="Bonitasoft";
+        },
+
+        after:function(){
+            soc1.name="fgfg";
+        },
+
+
+        "company name": function(){
+          assertEqual ( "Bonitasoft", soc1.name,"check company name");
+         },
+
+
         "employee Count": function(){
           assertEqual ( 2, soc1.departments.length,"<b>"+soc1.name+"</b> should have <b>"+2+" departments</b>");
          },
@@ -19,9 +33,11 @@
          },
           "average salary": function(){
           assertEqual ( 900, soc1.averageSalaries(),"average salary for company <b>"+soc1.name+"</b> should be <b>900</b>");
-         }
+         },
+
        }
     );
+
 
 
 </script>
@@ -29,6 +45,7 @@
 <pre>
 <script>
     document.write(soc1.toString())
+
 </script>
 </pre>
 </body>
