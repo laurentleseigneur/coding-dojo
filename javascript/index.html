@@ -4,9 +4,26 @@
 <script src="test.js"></script>
 <script src="script2.js"></script>
 <h1>Tests</h1>
-<script>var expected=900;
-    assertEqual ( expected, soc1.averageSalaries(),"average salaries for company <b>"+soc1.name+"</b> should be <b>"+expected+"</b>");
-    <!--assertEqual ( 600, soc1.averageSalaries(),"average salaries for company <b>"+soc1.name+"</b> should be <b>"+600+"</b>");-->
+<script>
+    testSuite("department tests",{
+        "employee Count": function(){
+          assertEqual ( "Support", soc1.departments[0].name,"first department name");
+        }
+    });
+    testSuite("company tests",{
+        "employee Count": function(){
+          assertEqual ( 2, soc1.departments.length,"<b>"+soc1.name+"</b> should have <b>"+2+" departments</b>");
+         },
+          "department Count": function(){
+          assertEqual ( 2, soc1.departments.length,"<b>"+soc1.name+"</b> should have <b>"+2+" departments</b>");
+         },
+          "average salary": function(){
+          assertEqual ( 900, soc1.averageSalaries(),"average salary for company <b>"+soc1.name+"</b> should be <b>900</b>");
+         }
+       }
+    );
+
+
 </script>
 
 <pre>
