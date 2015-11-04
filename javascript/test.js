@@ -55,7 +55,13 @@
                                  tests["after"]();
                             }
                         }
-                            catch(e){
+                            catch(err){
+                             var pe = window.document.createElement("pre");
+                             pe.innerHTML=": " + err.message+"\n";
+                             pe.innerHTML+="ERROR in test:'"+title+"."+test+ "' : " + err.message +"\n";
+                             pe.innerHTML+="STACK: " + err.stack;
+                             pe.style.color="red";
+                             window.document.body.appendChild(pe);
                             failed=test;
                         }  finally
                         {
