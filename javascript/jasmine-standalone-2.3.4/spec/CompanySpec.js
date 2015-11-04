@@ -16,16 +16,8 @@ describe("Company", function () {
         jasmine.addMatchers({
             toWorkIn: function () {
                 return {
-
-                    compare: function (employee, company, departmentName) {
-                        var result = false;
-
-                        company.departments.forEach(function (department) {
-                            if (department.name == departmentName) {
-                                result = department.findEmployee(employee.name) != null;
-                            }
-                        });
-
+                    compare: function (employee, department) {
+                        var result = department.findEmployee(employee.name) != null;
                         return {
                             pass: result
                         };
@@ -62,9 +54,12 @@ describe("Company", function () {
             expect(janne.age).toEqual(44)
         });
 
-
         it("should julie works in R&D", function () {
-            expect(this.julie).toWorkIn(this.company, "R&D");
+            expect(this.julie).toWorkIn(this.company.getDepartment("R&D"));
+        });
+
+        it("should julie does not works in Support", function () {
+            expect(this.julie).not.toWorkIn(this.company.getDepartment("Support"));
 
         });
     });
