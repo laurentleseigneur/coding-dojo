@@ -69,7 +69,11 @@
 
         }
         var p = window.document.createElement("p");
-        p.innerHTML = "Tests: " + total + " success:" + success + " failed test:<b>" + failed + "</b> skip:" + skip;
+        p.innerHTML = "Tests: " + total + " success:" + success;
+        if (failed) {
+            p.innerHTML += " failed test:<b>" + failed + "</b>";
+        }
+        p.innerHTML += " skip:" + skip;
         window.document.body.appendChild(p);
 
     }

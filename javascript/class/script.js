@@ -6,6 +6,10 @@ function Employee(name, age, salary) {
     this.toString = function () {
         return ret = name + "(" + salary + "$) - age:" + age;
     };
+
+    this.raiseSalary = function (rate) {
+        this.salary = this.salary * rate;
+    }
 };
 
 function Department(name, employees) {
@@ -106,6 +110,17 @@ function Company(name, departments) {
         });
     };
 
+    this.findEmployee = function (employeeName) {
+        var result = null;
+        this.departments.forEach(function (department) {
+            var employee = department.hasEmployee(employeeName);
+            if (employee != null) {
+                result = employee;
+            }
+        });
+        return result
+    };
+
     this.fireEmployee = function (employeeName) {
         this.departments.forEach(function (department) {
             var employee = department.hasEmployee(employeeName);
@@ -114,6 +129,15 @@ function Company(name, departments) {
             }
         });
     };
+
+    this.raiseEmployee = function (employeeName, rate) {
+        var employee = this.findEmployee(employeeName);
+        if (employee != null) {
+            employee.raiseSalary(rate);
+        }
+
+    };
+
 };
 
 (function () {

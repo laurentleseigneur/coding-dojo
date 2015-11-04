@@ -1,53 +1,4 @@
-testSuite("department tests", {
-
-    before: function () {
-        var e1 = new Employee("James", 34, 1000);
-        var e2 = new Employee("Joe", 34, 1000);
-        var e3 = new Employee("Jack", 37, 1000);
-
-        window.supportDept = new Department("Support", [e1, e2, e3]);
-    },
-
-
-    "dept name Count": function () {
-        assertEqual("Support", supportDept.name, "first department name");
-    },
-
-    "employee not found find": function () {
-        assertEqual(null, supportDept.hasEmployee("Raymond"), "search employee Raymond should return null");
-    },
-
-
-    "employee found": function () {
-        var emp = supportDept.hasEmployee("James")
-        assertEqual("James", emp.name, "search employee should find James");
-    },
-
-    "dept employees count": function () {
-        assertEqual(3, supportDept.sumEmployees(), "employees count");
-    },
-
-    "new employee ": function () {
-        var jack = new Employee("Jack", 32, 300);
-        supportDept.addEmployee(jack);
-        assertEqual(4, supportDept.sumEmployees(), "should have one more employee");
-
-    },
-
-    "has employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
-        assertEqual(37, jack.age, "should find employee");
-    },
-
-    "should fire employee ": function () {
-        var jack = supportDept.hasEmployee("Jack");
-        supportDept.fireEmployee(jack);
-        assertEqual(2, supportDept.sumEmployees(), "should fire employee");
-    }
-});
-
-
-testSuite("company tests", {
+testSuite("Company test", {
         before: function () {
             var e1 = new Employee("James", 34, 1000);
             var e2 = new Employee("Joe", 34, 1000);
@@ -96,12 +47,23 @@ testSuite("company tests", {
             assertEqual(990, soc1.averageSalaries(), "should not have new average salary for company");
         },
 
+        "find employee ": function () {
+            var jack = soc1.findEmployee("Janne");
+            assertEqual(44, jack.age, "should find employee");
+        },
+
+
         "fire employee ": function () {
             assertEqual(5, soc1.sumEmployees(), "should not have one more employee");
             soc1.fireEmployee("Jack");
             assertEqual(4, soc1.sumEmployees(), "should have one less employee");
             assertEqual(900, soc1.averageSalaries(), "should have new average salary for company");
         },
+
+        "raise employee salary": function () {
+            soc1.raiseEmployee("Jack", 1.15);
+            assertEqual(1030.5, soc1.averageSalaries(), "should have new average salary after raise");
+        }
     }
 );
 
