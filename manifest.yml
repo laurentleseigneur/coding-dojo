@@ -1,0 +1,9 @@
+---
+applications:
+- name: hello-world-${random-word}
+  buildpack: staticfile_buildpack
+#services:
+#- mysql-db
+#- mysql-bizdata
+env:
+  BONITA_HOME: path/to/bonita-home
